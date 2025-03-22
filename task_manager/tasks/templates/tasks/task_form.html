@@ -1,0 +1,22 @@
+{% extends 'form_base.html' %}
+
+{% block title %}Create Task{% endblock %}
+{% block form_title %}Create a New Task{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="mb-3">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                    <div class="text-danger small">
+                        {{ field.errors.0 }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary w-100">Save Task</button>
+    </form>
+{% endblock %}
